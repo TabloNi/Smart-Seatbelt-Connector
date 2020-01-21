@@ -12,41 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <androidx.appcompat.widget.Toolbar xmlns:app="schemas.android.com/apk/res-auto"
-            android:id="@+id/suggestToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:contentInsetStart="0dp"
-            android:contentInsetLeft="0dp"
-            android:contentInsetEnd="0dp"
-            android:contentInsetRight="0dp"
-            app:contentInsetEnd="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp"
-            app:theme="@style/ThemeOverlay.AppCompat">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:paddingRight="72dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#fff"
-                    android:fontFamily="@font/scdream_black"
-                    android:gravity="center"
-                    android:text="좌석 확인"
-                    android:textColor="#00B0FF"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -58,10 +23,12 @@
             android:background="#fff"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/bluetoothBu"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@drawable/ic_bluetooth_24px" />
+                android:background="@drawable/ic_bluetooth_24px"
+                android:orientation="horizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -187,6 +154,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
+                                android:id="@+id/testa"
                                 android:text="1"
                                 android:textColor="#000"
                                 android:textSize="20sp" />
@@ -1385,7 +1353,8 @@
         android:background="#cf0f0f0f"
         android:orientation="vertical"
         android:paddingLeft="50dp"
-        android:paddingRight="50dp">
+        android:paddingRight="50dp"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1423,10 +1392,10 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/rPairedBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="8dp"
-                    android:id="@+id/rPairedBtn"
                     android:layout_marginRight="4dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_rectangle_blue"
@@ -1434,12 +1403,12 @@
                     android:textSize="17sp" />
 
                 <Button
+                    android:id="@+id/rdiscover"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="8dp"
                     android:layout_weight="1"
-                    android:id="@+id/rdiscover"
                     android:background="@drawable/round_rectangle_blue"
                     android:text="검색 하기"
                     android:textSize="17sp" />
@@ -1449,6 +1418,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="10dp"
+                android:id="@+id/bluetoothCan"
                 android:layout_weight="1"
                 android:background="@drawable/round_rectangle_blue"
                 android:text="닫기"

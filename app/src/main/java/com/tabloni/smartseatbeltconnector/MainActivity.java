@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private Set<BluetoothDevice> mPairedDevices;
     private ArrayAdapter<String> mBTArrayAdapter;
     private ListView mDevicesListView;
+    private Button mBluetoothButton;
+    private TextView asd;
+    private LinearLayout mBluetoothlayout;
+    private Button mCan;
 
     private final String TAG = MainActivity.class.getSimpleName();
     private Handler mHandler; // Our main handler that will receive callback notifications
@@ -68,18 +73,38 @@ public class MainActivity extends AppCompatActivity {
 
 
         mDiscoverBtn = (Button) findViewById(R.id.rdiscover);
+        mBluetoothButton = findViewById(R.id.bluetoothBu);
         mListPairedDevicesBtn = (Button) findViewById(R.id.rPairedBtn);
+        mBluetoothlayout = findViewById(R.id.bluetoothLayout);
 
         mBTArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         mBTAdapter = BluetoothAdapter.getDefaultAdapter(); // get a handle on the bluetooth radio
 
         mDevicesListView = (ListView) findViewById(R.id.ddevicesListView);
         mDevicesListView.setAdapter(mBTArrayAdapter); // assign model to view
+        asd = findViewById(R.id.testa);
         mDevicesListView.setOnItemClickListener(mDeviceClickListener);
+        mCan = findViewById(R.id.bluetoothCan);
 
         // Ask for location permission if not already allowed
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+
+        mBluetoothButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBluetoothlayout.setVisibility(View.VISIBLE);
+                mBluetoothlayout.setClickable(true);
+            }
+        });
+
+        mCan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBluetoothlayout.setVisibility(View.GONE);
+                mBluetoothlayout.setClickable(false);
+            }
+        });
 
 
         mHandler = new Handler() {
@@ -96,9 +121,14 @@ public class MainActivity extends AppCompatActivity {
 
                 if (msg.what == CONNECTING_STATUS) {
                     if (msg.arg1 == 1) {
+                        Toast.makeText(getApplicationContext(), "연결에 성공하였습니다!", Toast.LENGTH_SHORT).show();
+                        mBluetoothlayout.setVisibility(View.GONE);
+                        mBluetoothlayout.setClickable(false);
+                        //연결 된거임.
                     }
                     //mBluetoothStatus.setText("Connected to Device: " + (String) (msg.obj));
                     else {
+                        Toast.makeText(getApplicationContext(), "연결에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                     }
                     //mBluetoothStatus.setText("Connection Failed");
                 }
@@ -108,17 +138,17 @@ public class MainActivity extends AppCompatActivity {
         if (mBTArrayAdapter == null) {
             // Device does not support Bluetooth
             //mBluetoothStatus.setText("Status: Bluetooth not found");
-            Toast.makeText(getApplicationContext(), "Bluetooth device not found!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "블루투스 기기를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
         } else {
 
-//            .setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (mConnectedThread != null) //First check to make sure thread created
-//                        //값 넣는부분
-//                        mConnectedThread.write("qdf");
-//                }
-//            });
+            asd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mConnectedThread != null) //First check to make sure thread created
+                        //값 넣는부분
+                        mConnectedThread.write("qdf");
+                }
+            });
 
 
             mListPairedDevicesBtn.setOnClickListener(new View.OnClickListener() {
@@ -169,12 +199,12 @@ public class MainActivity extends AppCompatActivity {
         // Check if the device is already discovering
         if (mBTAdapter.isDiscovering()) {
             mBTAdapter.cancelDiscovery();
-            Toast.makeText(getApplicationContext(), "Discovery stopped", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "검색을 종료합니다.", Toast.LENGTH_SHORT).show();
         } else {
             if (mBTAdapter.isEnabled()) {
                 mBTArrayAdapter.clear(); // clear items
                 mBTAdapter.startDiscovery();
-                Toast.makeText(getApplicationContext(), "Discovery started", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "검색을 시작합니다.", Toast.LENGTH_SHORT).show();
                 registerReceiver(blReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
             } else {
                 bluetoothOn(view);
@@ -203,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
             for (BluetoothDevice device : mPairedDevices)
                 mBTArrayAdapter.add(device.getName() + "\n" + device.getAddress());
 
-            Toast.makeText(getApplicationContext(), "Show Paired Devices", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "저장된 목록을 표시합니다.", Toast.LENGTH_SHORT).show();
         } else
             bluetoothOn(view);
     }
@@ -215,6 +245,8 @@ public class MainActivity extends AppCompatActivity {
                 bluetoothOn(v);
                 return;
             }
+
+            Toast.makeText(getApplicationContext(), "연결중...", Toast.LENGTH_SHORT).show();
 
             //mBluetoothStatus.setText("Connecting...");
             // Get the device MAC address, which is the last 17 chars in the View
@@ -233,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                         mBTSocket = createBluetoothSocket(device);
                     } catch (IOException e) {
                         fail = true;
-                        Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "소켓 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
                     }
                     // Establish the Bluetooth socket connection.
                     try {
@@ -246,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
                                     .sendToTarget();
                         } catch (IOException e2) {
                             //insert code to deal with this
-                            Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), "소켓 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
                     if (fail == false) {
