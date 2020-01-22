@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -150,11 +151,11 @@
                             android:padding="8dp">
 
                             <TextView
+                                android:id="@+id/testa"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:id="@+id/testa"
                                 android:text="1"
                                 android:textColor="#000"
                                 android:textSize="20sp" />
@@ -163,6 +164,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:id="@+id/ja2bbu"
                                 android:gravity="center"
                                 android:text="2"
                                 android:textColor="#000"
@@ -1415,10 +1417,242 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/bluetoothCan"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="10dp"
-                android:id="@+id/bluetoothCan"
+                android:layout_weight="1"
+                android:background="@drawable/round_rectangle_blue"
+                android:text="닫기"
+                android:textSize="25sp"></Button>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ja1Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cf0f0f0f"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="@drawable/round_rectangle_blue"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/scdream_black"
+                android:gravity="center"
+                android:text="선택 중인 좌석 : 1번"
+                android:textColor="@color/blueBluetooth"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/scdream_medium"
+                    android:gravity="center"
+                    android:text="배터리 상태"
+                    android:textColor="#000" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#A0A0A0"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/scdream_medium_ff"
+                    android:gravity="center"
+                    android:text="매우 좋음"
+                    android:textColor="#009950"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:src="@drawable/batter"
+                    android:padding="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/ja1care"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/round_rectangle_blue_infill"
+                        android:text="제어 하기"
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/ja1can"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_rectangle_blue"
+                android:text="닫기"
+                android:textSize="25sp"></Button>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ja2Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cf0f0f0f"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="@drawable/round_rectangle_blue"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/scdream_black"
+                android:gravity="center"
+                android:text="선택 중인 좌석 : 2번"
+                android:textColor="@color/blueBluetooth"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/scdream_medium"
+                    android:gravity="center"
+                    android:text="배터리 상태"
+                    android:textColor="#000" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#A0A0A0"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/scdream_medium_ff"
+                    android:gravity="center"
+                    android:text="매우 좋음"
+                    android:textColor="#009950"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:padding="8dp"
+                    android:src="@drawable/batter" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/ja2care"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/round_rectangle_blue_infill"
+                        android:text="제어 하기"
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/ja2can"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_rectangle_blue"
                 android:text="닫기"

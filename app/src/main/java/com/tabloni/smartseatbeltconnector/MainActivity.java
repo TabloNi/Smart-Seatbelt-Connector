@@ -47,9 +47,11 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> mBTArrayAdapter;
     private ListView mDevicesListView;
     private Button mBluetoothButton;
-    private TextView asd;
-    private LinearLayout mBluetoothlayout;
+    private TextView ja1bu,ja2bu;
+    private Boolean ConnectingStatus = false;
+    private LinearLayout mBluetoothlayout,mJa1Lay,mJa2Lay;
     private Button mCan;
+
 
     private final String TAG = MainActivity.class.getSimpleName();
     private Handler mHandler; // Our main handler that will receive callback notifications
@@ -82,9 +84,12 @@ public class MainActivity extends AppCompatActivity {
 
         mDevicesListView = (ListView) findViewById(R.id.ddevicesListView);
         mDevicesListView.setAdapter(mBTArrayAdapter); // assign model to view
-        asd = findViewById(R.id.testa);
+        ja1bu = findViewById(R.id.testa);
         mDevicesListView.setOnItemClickListener(mDeviceClickListener);
         mCan = findViewById(R.id.bluetoothCan);
+        mJa1Lay = findViewById(R.id.ja1Layout);
+        mJa2Lay = findViewById(R.id.ja2Layout);
+        ja2bu = findViewById(R.id.ja2bbu);
 
         // Ask for location permission if not already allowed
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
@@ -124,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "연결에 성공하였습니다!", Toast.LENGTH_SHORT).show();
                         mBluetoothlayout.setVisibility(View.GONE);
                         mBluetoothlayout.setClickable(false);
+                        ConnectingStatus = true;
                         //연결 된거임.
                     }
                     //mBluetoothStatus.setText("Connected to Device: " + (String) (msg.obj));
@@ -135,18 +141,32 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+
         if (mBTArrayAdapter == null) {
             // Device does not support Bluetooth
             //mBluetoothStatus.setText("Status: Bluetooth not found");
             Toast.makeText(getApplicationContext(), "블루투스 기기를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
         } else {
 
-            asd.setOnClickListener(new View.OnClickListener() {
+            ja1bu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                   // if(ConnectingStatus){
+                        mJa1Lay.setVisibility(View.VISIBLE);
+                        mJa1Lay.setClickable(true);
+                   // }
+
                     if (mConnectedThread != null) //First check to make sure thread created
                         //값 넣는부분
                         mConnectedThread.write("qdf");
+                }
+            });
+
+            ja2bu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mJa2Lay.setVisibility(View.VISIBLE);
+                    mJa2Lay.setClickable(true);
                 }
             });
 
